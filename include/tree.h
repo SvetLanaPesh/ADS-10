@@ -2,6 +2,7 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
+#include <algorithm>
 class Tree {
  public:
     struct Node {
@@ -9,7 +10,7 @@ class Tree {
         int count;
         Node** sons;
     };
- 
+
  private:
     Node* root = nullptr;
     Node* node;
@@ -54,7 +55,7 @@ class Tree {
         std::vector<char> path;
         treeTraversal(node, path);
     }
- 
+
  public:
     explicit Tree(std::vector<char> value) {
         node = new Node;
