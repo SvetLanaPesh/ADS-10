@@ -26,15 +26,16 @@ class Tree {
         }
         for (int i = 0; i < node->count; i+=1) {
             std::vector<char> val(value);
-            auto it = std::remove(val.begin(), val.end(), node->sons[i]->value);
-            val.erase(it, val.end());
+            auto it = std::find(val.begin(), val.end(), node->sons[i]->value);
+            if (it != val.end())
+                val.erase(it);
             add(node->sons[i], val);
         }
     }
     bool isLeaf(Node* node) {
         return (node->sons == nullptr);
     }
-    void treeTraversal(Node* node, std::vector<char>& path) {
+    void treeTraversal(Node* node, std::vector<char> path) {
         if (node == nullptr) {
             return;
         }
@@ -52,7 +53,7 @@ class Tree {
         treeTraversal(node, path);
     }
  public:
-    Tree(std::vector<char> value) {
+    explicit Tree(std::vector<char> value) {
         node = new Node;
         root = node;
         node->value = '*';
