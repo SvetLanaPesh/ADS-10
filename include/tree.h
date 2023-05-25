@@ -9,6 +9,7 @@ class Tree {
         int count;
         Node** sons;
     };
+ 
  private:
     Node* root = nullptr;
     Node* node;
@@ -26,7 +27,8 @@ class Tree {
         }
         for (int i = 0; i < node->count; i+=1) {
             std::vector<char> val(value);
-            auto it = std::find(val.begin(), val.end(), node->sons[i]->value);
+            std::vector<char>::iterator it;
+            it = std::find(val.begin(), val.end(), node->sons[i]->value);
             if (it != val.end())
                 val.erase(it);
             add(node->sons[i], val);
@@ -52,6 +54,7 @@ class Tree {
         std::vector<char> path;
         treeTraversal(node, path);
     }
+ 
  public:
     explicit Tree(std::vector<char> value) {
         node = new Node;
